@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+# 📝 My Todo List App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based to-do list application featuring category tagging, editing, filtering, and drag-and-drop reordering, styled with Tailwind CSS.
 
-## Available Scripts
+> Developed as part of my personal front-end learning and portfolio.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🔧 Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React (v19)** – Functional components with hooks
+- **Tailwind CSS** – Utility-first CSS framework for fast UI styling
+- **@hello-pangea/dnd** – React-based drag-and-drop support
+- **LocalStorage** – Keeps tasks persistent across browser sessions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📁 Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+my-todo-app/
+├── src/
+│   ├── components/
+│   │   ├── AddTaskForm.js       # Task input field and Add button
+│   │   ├── SearchTask.js        # Filtering UI for category/status
+│   │   └── TaskItem.js          # Individual task UI logic
+│   ├── utils/
+│   │   ├── addTask.js           # Function to create and add a task
+│   │   └── toggleEditMode.js    # Function to manage edit state transitions
+│   ├── App.jsx                  # Main state and logic controller
+│   ├── index.css                # Tailwind CSS directives
+│   └── index.js                 # React app entry point
+├── tailwind.config.js
+└── package.json
+```
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧱 Component Breakdown
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🔹 `components/`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### `AddTaskForm.js`
+- Manages new task input and category selection
+- Supports both click and Enter key submission
 
-### `npm run eject`
+#### `SearchTask.js`
+- Provides category and completion status filters
+- Controlled components for filter state
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### `TaskItem.js`
+- Handles display of each task
+- Dynamic rendering based on `isEditing` and `completed`
+- Supports drag-and-drop, check, edit, delete, and inline editing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🔸 `utils/`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### `addTask.js`
+- Creates a new task object with required default properties
+- Adds the task to the current list state
 
-## Learn More
+#### `toggleEditMode.js`
+- Switches between edit and display mode for a task
+- Handles validation (prevents saving empty input)
+- Saves updated taskName from editValue
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎯 Why This Structure?
 
-### Code Splitting
+- **Separation of Concerns**  
+  Business logic and UI are cleanly separated for clarity and maintainability.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Readability and Reusability**  
+  Utility functions are extracted to improve readability and promote reuse.
 
-### Analyzing the Bundle Size
+- **Scalable Component Design**  
+  State lives in the top-level component (`App`), passed down via props.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Tailwind Efficiency**  
+  Tailwind allows fast prototyping and layout tuning without needing external CSS files.
 
-### Making a Progressive Web App
+- **Easy DnD Integration**  
+  Drag-and-drop support added with minimal refactoring using `@hello-pangea/dnd`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 💡 User Interaction Flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. User enters a task and selects a category
+2. `addTask.js` generates a task object and updates state
+3. The task is rendered through `TaskItem`
+4. Dragging updates order via `onDragEnd`
+5. Edit mode handled via `toggleEditMode.js` with validation
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🚀 Getting Started
 
-### `npm run build` fails to minify
+```bash
+git clone https://github.com/Rosey0/My-todoList.git
+cd my-todoList
+npm install
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📜 License
+
+MIT
